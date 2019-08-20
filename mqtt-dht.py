@@ -32,6 +32,8 @@ def on_connect(client, userdata, flags, rc):
 
 client = mqtt.Client()
 client.on_connect = on_connect
+client.username_pw_set(config['mqtt'].get('user', 'guest'),
+                       config['mqtt'].get('password', 'guest'))
 client.connect(config['mqtt'].get('hostname', 'homeassistant'),
                config['mqtt'].getint('port', 1883),
                config['mqtt'].getint('timeout', 60))
